@@ -30,6 +30,8 @@ import {
   FundRawTransactionResponse,
   SendCurrencyRequest,
   SendCurrencyResponse,
+  SignDataRequest,
+  SignDataResponse,
   GetCurrencyConvertersRequest,
   GetCurrencyConvertersResponse,
   CurrencyDefinition,
@@ -172,6 +174,10 @@ class VerusdRpcInterface {
 
   getInfo(...args: ConstructorParametersAfterFirst<typeof GetInfoRequest>) {
     return this.request<GetInfoResponse["result"]>(new GetInfoRequest(this.chain, ...args));
+  }
+
+  signData(...args: ConstructorParametersAfterFirst<typeof SignDataRequest>) {
+    return this.request<SignDataResponse["result"]>(new SignDataRequest(this.chain, ...args));
   }
 
   getOffers(...args: ConstructorParametersAfterFirst<typeof GetOffersRequest>) {

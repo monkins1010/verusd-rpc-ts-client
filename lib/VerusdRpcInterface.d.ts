@@ -1,5 +1,5 @@
 import { AxiosInstance, AxiosRequestConfig } from "axios";
-import { GetAddressBalanceRequest, ApiRequest, GetAddressDeltasRequest, GetAddressUtxosRequest, GetBlockRequest, GetIdentityRequest, GetInfoRequest, GetOffersRequest, GetRawTransactionRequest, MakeOfferRequest, SendRawTransactionRequest, GetCurrencyRequest, GetAddressMempoolRequest, GetVdxfIdRequest, FundRawTransactionRequest, SendCurrencyRequest, GetCurrencyConvertersRequest, CurrencyDefinition, ApiResponse, ListCurrenciesRequest, EstimateConversionRequest } from "verus-typescript-primitives";
+import { GetAddressBalanceRequest, ApiRequest, GetAddressDeltasRequest, GetAddressUtxosRequest, GetBlockRequest, GetIdentityRequest, GetInfoRequest, GetOffersRequest, GetRawTransactionRequest, MakeOfferRequest, SendRawTransactionRequest, GetCurrencyRequest, GetAddressMempoolRequest, GetVdxfIdRequest, FundRawTransactionRequest, SendCurrencyRequest, SignDataRequest, GetCurrencyConvertersRequest, CurrencyDefinition, ApiResponse, ListCurrenciesRequest, EstimateConversionRequest } from "verus-typescript-primitives";
 import { ConstructorParametersAfterFirst } from "./types/ConstructorParametersAfterFirst";
 import { RpcRequestBody, RpcRequestResult } from "./types/RpcRequest";
 declare type Convertable = {
@@ -159,6 +159,23 @@ declare class VerusdRpcInterface {
         veruspos: number;
         chainid?: string | undefined;
         notarychainid?: string | undefined;
+    }, any>>;
+    signData(...args: ConstructorParametersAfterFirst<typeof SignDataRequest>): Promise<RpcRequestResult<{
+        mmrdescriptor_encrypted: import("verus-typescript-primitives/dist/utils/types/MmrDescriptor").mmrDescriptorParameters;
+        mmrdescriptor: import("verus-typescript-primitives/dist/utils/types/MmrDescriptor").mmrDescriptorParameters;
+        signature: string;
+        signaturedata_encrypted: import("verus-typescript-primitives/dist/utils/types/DataDescriptor").DataDescriptor;
+        signaturedata_ssk: string;
+        signaturedata: import("verus-typescript-primitives/dist/utils/types/Signature").Signature;
+        system: string;
+        systemid: string;
+        hashtype: string;
+        mmrhashtype: string;
+        hash: string;
+        identity: string;
+        canonicalname: string;
+        address: string;
+        signatureheight: number;
     }, any>>;
     getOffers(...args: ConstructorParametersAfterFirst<typeof GetOffersRequest>): Promise<RpcRequestResult<import("verus-typescript-primitives/dist/offers/OfferList").OfferList, any>>;
     getRawTransaction(...args: ConstructorParametersAfterFirst<typeof GetRawTransactionRequest>): Promise<RpcRequestResult<string | import("verus-typescript-primitives/dist/transaction/RawTransaction").RawTransaction, any>>;
